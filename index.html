@@ -198,7 +198,8 @@
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            const whatsappMessage = Name: ${name}%0AEmail: ${email}%0AMessage: ${message};
+            const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+
             document.getElementById('whatsapp-message').value = whatsappMessage;
 
             window.location.href = https://api.whatsapp.com/send?phone=+919875771550&text=${whatsappMessage};
