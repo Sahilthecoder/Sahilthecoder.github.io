@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 
@@ -23,8 +23,8 @@
     <div class="container" role="main" aria-label="Sahil Ali Inventory Specialist Portfolio">
         <h1>Sahil Ali</h1>
         <p class="tagline">Inventory Specialist • Data Analyst • System Optimizer</p>
-
-        <img src="https://res.cloudinary.com/dlbxotngq/image/upload/v1745295730/WhatsApp_Image_2025-04-22_at_02.36.52_bd29328a_gsrlh8.jpg"
+        <img
+            src="https://res.cloudinary.com/dlbxotngq/image/upload/v1745295730/WhatsApp_Image_2025-04-22_at_02.36.52_bd29328a_gsrlh8.jpg"
             alt="Sahil Ali" class="profile-image" />
 
         <section>
@@ -92,6 +92,7 @@
                     <li><i class="fas fa-boxes"></i> Inventory Management</li>
                     <li><i class="fas fa-handshake"></i> Vendor Coordination</li>
                     <li><i class="fas fa-users"></i> Team Collaboration</li>
+                    <li><i class="fas fa-balance-scale"></i> Stock Auditing</li>
                     <li><i class="fas fa-check-circle"></i> Data Accuracy</li>
                     <li><i class="fas fa-chart-line"></i> Data Analysis & Reporting</li>
                     <li><i class="fas fa-file-excel"></i> Excel (VLOOKUP, Pivot Tables)</li>
@@ -131,7 +132,8 @@
     font-weight: 400;">
                 <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Zomato Dashboard
                 projects:
-                <a href="https://docs.google.com/spreadsheets/d/10O8-8vsGbaIxKCnj3PQNM20x6QgT8bpM/edit?usp=sharing&ouid=104717405836936422128&rtpof=true&sd=true"
+                <a
+                    href="https://docs.google.com/spreadsheets/d/10O8-8vsGbaIxKCnj3PQNM20x6QgT8bpM/edit?usp=sharing&ouid=104717405836936422128&rtpof=true&sd=true"
                     target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 500;">
                     <i class="fas fa-external-link-alt"></i> Project 1
                 </a>
@@ -145,9 +147,7 @@
                     <i class="fas fa-external-link-alt"></i> Project 2
                 </a>
             </p>
-            <img src="assets/images/Slide1.JPG" alt="Slide 1">
-<img src="assets/images/Slide2.JPG" alt="Slide 2">
-
+         
         </section>
 
         <section>
@@ -199,10 +199,8 @@
             const message = document.getElementById('message').value;
 
             const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
-
             document.getElementById('whatsapp-message').value = whatsappMessage;
-
-            window.location.href = https://api.whatsapp.com/send?phone=+919875771550&text=${whatsappMessage};
+            window.location.href = `https://api.whatsapp.com/send?phone=+919875771550&text=${whatsappMessage}`;
         });
 
         function toggleAccordion(header) {
