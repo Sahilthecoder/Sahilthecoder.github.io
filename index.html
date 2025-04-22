@@ -215,14 +215,22 @@
             background: #a67c00;
         }
 
-        /*Image CSS*/
+        /* Image CSS */
         .profile-image {
-            width: 150px; /* Adjust size as needed */
+            width: 150px;
             height: 150px;
-            border-radius: 50%; /* Makes the image a circle */
-            object-fit: cover; /* Ensures the image fills the circle without distortion */
-            margin: 0 auto 20px; /* Centers the image and adds space below */
-            display: block; /* Required for margin: 0 auto to work */
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid var(--gold); /* Add a border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
+            transition: all 0.3s ease; /* Add a smooth transition for hover effects */
+        }
+
+        .profile-image:hover {
+            transform: scale(1.1); /* Slightly scale up the image on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
         }
     </style>
 </head>
@@ -234,9 +242,7 @@
     <h1>Sahil Ali</h1>
     <p class="tagline">Inventory Specialist • Data Analyst • System Optimizer</p>
 
-    <!--Image tag added here -->
-  <img src="https://drive.google.com/file/d/1W2DLC2zjd8yIVQM19NhLk9C9PBA7NdGU/view?usp=sharing" alt="Sahil Ali" class="profile-image"/>
-
+    <img src="https://asset.cloudinary.com/dlbxotngq/77b1d6cf6154fbee125c9f9e82464632" alt="Sahil Ali" class="profile-image"/>
 
     <section>
         <h2>Professional Snapshot</h2>
@@ -357,20 +363,16 @@
     });
 
     document.getElementById('contact-form').addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
 
-        // Get form values
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
 
-        // Construct the WhatsApp message
         const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
 
-        // Set the WhatsApp message to the hidden input field
         document.getElementById('whatsapp-message').value = whatsappMessage;
 
-        // Open WhatsApp with the message
         window.location.href = `https://api.whatsapp.com/send?phone=+919875771550&text=${whatsappMessage}`;
     });
 </script>
