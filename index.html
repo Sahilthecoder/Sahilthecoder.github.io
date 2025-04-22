@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet" />
-    <style>
+   <style>
     :root {
         --bg: #f5f5f5;
         --text: #121212;
@@ -184,6 +184,7 @@
         font-size: 1rem;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
         transition: background var(--transition-duration), color var(--transition-duration);
+        width: auto;
     }
 
     .links a:hover {
@@ -472,9 +473,16 @@
             top: 15px;
             right: 15px;
         }
+
+        .links {
+            gap: 8px;
+        }
+
+        .links a {
+            width: 48%;  /* For buttons to align side-by-side */
+        }
     }
 </style>
-
 </head>
 
 <body>
