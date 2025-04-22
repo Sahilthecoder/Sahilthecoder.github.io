@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Sahil Ali | Inventory Specialist</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet"/>
+
+    <style>
+        :root {
+            --bg: #f5f5f5;
+            --text: #121212;
+            --gold: #b8860b;
+            --badge-bg: #b8860b;
+            --badge-text: #fff;
+        }
+
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #f5f5f5;
+            --gold: #ffd700;
+            --badge-bg: #ffd700;
+            --badge-text: #121212;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: var(--bg);
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.3);
+        }
+
+        h1 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        p.tagline {
+            margin: 0 0 30px;
+            font-weight: 500;
+            color: var(--text);
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        li i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        li strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input, textarea, button {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        input, textarea {
+            background: #eee;
+            color: #121212;
+            resize: none;
+        }
+
+        button {
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background .3s;
+        }
+
+        button:hover {
+            background: #a67c00;
+        }
+
+        #theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            color: var(--gold);
+            font-size: 24px;
+            transition: color .3s;
+        }
+
+        #theme-toggle:hover {
+            color: #a67c00;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 10px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            transition: background .3s;
+        }
+
+        .links a:hover {
+            background: var(--gold);
+            color: var(--text);
+        }
+
+        .links a img {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .highlight-box {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            font-size: .9em;
+            color: #777;
+        }
+
+        .highlight-box strong {
+            color: var(--gold);
+        }
+
+        .project-link {
+            background: var(--gold);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background .3s;
+            display: block;
+            margin: 20px 0;
+        }
+
+        .project-link:hover {
+            background: #a67c00;
+        }
+
+        /* Image CSS */
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid var(--gold); /* Add a border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
+            transition: all 0.3s ease; /* Add a smooth transition for hover effects */
+        }
+
+        .profile-image:hover {
+            transform: scale(1.1); /* Slightly scale up the image on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+  /* General styles for the presentation section */
+  #presentation {
+    padding: 40px;
+    text-align: center;
+  }
+
+  #presentation h2 {
+    margin-bottom: 30px;
+  }
+
+  /* Styles for all images inside the .slides div */
+  .slides img {
+    max-width: 100%;  /* Full width on small screens */
+    height: auto;  /* Maintain aspect ratio */
+    margin: 20px 0;  /* Spacing between images */
+    border-radius: 12px;  /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Soft shadow effect */
+    transition: transform 0.3s ease-in-out;  /* Smooth zoom effect */
+  }
+
+  /* Hover effect to zoom in images */
+  .slides img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .slides img {
+      max-width: 90%;  /* Slightly smaller images on medium screens (tablets) */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .slides img {
+      max-width: 100%;  /* Full width on mobile screens */
+      margin: 10px 0;  /* Reduce margin on smaller screens */
+    }
+  }
+    </style>
+</head>
+<body>
+<button id="theme-toggle" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode"
+        aria-pressed="false" type="button"><i class="fas fa-moon"></i></button>
+
+<div class="container" role="main" aria-label="Sahil Ali Inventory Specialist Portfolio">
+    <h1>Sahil Ali</h1>
+    <p class="tagline">Inventory Specialist • Data Analyst • System Optimizer</p>
+
+     <img src="https://res.cloudinary.com/dlbxotngq/image/upload/v1745295730/WhatsApp_Image_2025-04-22_at_02.36.52_bd29328a_gsrlh8.jpg" alt="Sahil Ali" class="profile-image"/>
+
+
+    <section>
+        <h2>Professional Snapshot</h2>
+        <ul>
+            <li>A highly skilled and results-oriented Inventory Specialist with 4+ years of experience
+                optimizing stock levels, streamlining purchase processes, and ensuring meticulous record
+                management. Proficient in leveraging ERP systems and advanced Excel functions to drive
+                data-driven decisions and enhance operational efficiency. A collaborative team player
+                dedicated to maintaining accuracy and achieving measurable improvements in supply chain
+                performance.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Work Experience</h2>
+        <ul>
+            <li><strong><i class="fas fa-store"></i> Inventory Specialist, Ekam Indian Groceries Australia,
+                    Adelaide</strong> (Dec 2022 – Present)
+                <ul>
+                    <li>Spearheaded end-to-end inventory management utilizing ERP systems (like Erply),
+                        resulting in a 15% reduction in stock discrepancies.
+                    </li>
+                    <li>Implemented cross-checking for supplier dockets, achieving 99% reconciliation
+                        accuracy.
+                    </li>
+                    <li>Created detailed reports identifying trends, boosting profitability by 10%.</li>
+                </ul>
+            </li>
+            <li><strong><i class="fas fa-shopping-cart"></i> GRN Officer, Bansal Supermarket, Surat</strong>
+                (Dec 2021 – Nov 2022)
+                <ul>
+                    <li>Verified floor pricing daily, increasing promo item sales by 5%.</li>
+                    <li>Maintained 98% accuracy in credit/debit note entries.</li>
+                    <li>Reduced stockouts by 7% via real-time inventory updates.</li>
+                </ul>
+            </li>
+            <li><strong><i class="fas fa-warehouse"></i> Warehouse Supervisor, DDUGKY, Jaipur</strong> (Jun
+                2021 – Nov 2021)
+                <ul>
+                    <li>Organized inventory, preventing stockouts and delays.</li>
+                    <li>Developed Excel-based stock tracking reducing errors by 10%.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Core Skills</h2>
+        <ul>
+            <li><i class="fas fa-boxes"></i> Inventory Management</li>
+            <li><i class="fas fa-handshake"></i> Vendor Coordination</li>
+            <li><i class="fas fa-users"></i> Team Collaboration</li>
+            <li><i class="fas fa-check-circle"></i> Data Accuracy</li>
+            <li><i class="fas fa-chart-line"></i> Data Analysis & Reporting</li>
+            <li><i class="fas fa-file-excel"></i> Excel (VLOOKUP, Pivot Tables)</li>
+            <li><i class="fas fa-warehouse"></i> Stock Reconciliation</li>
+            <li><i class="fas fa-clipboard-check"></i> Attention to Detail</li>
+            <li><i class="fas fa-check-circle"></i> Operational Efficiency</li>
+            <li><i class="fas fa-percentage"></i> Cost Reduction</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        <ul>
+            <li><i class="fas fa-graduation-cap"></i> B.Sc. in Computer Science – MDSU University, Rajasthan
+                (2018 — 2021)
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Languages</h2>
+        <ul>
+            <li><i class="fas fa-language"></i> English</li>
+            <li><i class="fas fa-language"></i> Hindi</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+        <h2 style="color: var(--gold);
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 5px;">Projects & Portfolio</h2>
+        <p style=" margin-bottom: 12px;
+    font-weight: 400;">
+            <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Zomato Dashboard projects:
+            <a href="https://docs.google.com/spreadsheets/d/10O8-8vsGbaIxKCnj3PQNM20x6QgT8bpM/edit?usp=sharing&ouid=104717405836936422128&rtpof=true&sd=true"
+               target="_blank"
+               style="color: var(--gold); text-decoration: none; font-weight: 500;">
+                <i class="fas fa-external-link-alt"></i> Project 1
+            </a>
+        </p>
+       <p style=" margin-bottom: 12px;
+    font-weight: 400;">
+            <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Attendance Daily Work:
+            <a href="YOUR_SECOND_PROJECT_LINK_HERE"
+               target="_blank"
+               style="color: var(--gold); text-decoration: none; font-weight: 500;">
+                <i class="fas fa-external-link-alt"></i> Project 2
+            </a>
+        </p>
+    </section>
+<section id="presentation">
+  <h2>My Presentation Slides</h2>
+
+  <div class="slides">
+    <img src="assets/images/Slide1.jpg" alt="Slide 1" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide2.jpg" alt="Slide 2" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide3.jpg" alt="Slide 3" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide4.jpg" alt="Slide 4" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide5.jpg" alt="Slide 5" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide6.jpg" alt="Slide 6" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide7.jpg" alt="Slide 7" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide8.jpg" alt="Slide 8" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide9.jpg" alt="Slide 9" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide10.jpg" alt="Slide 10" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide11.jpg" alt="Slide 11" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide12.jpg" alt="Slide 12" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide13.jpg" alt="Slide 13" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide14.jpg" alt="Slide 14" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <img src="assets/images/Slide15.jpg" alt="Slide 15" style="max-width: 90%; height: auto; margin: 20px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+  </div>
+</section>
+
+
+    <section>
+        <h2>Contact Me</h2>
+        <form id="contact-form" action="https://api.whatsapp.com/send" method="GET">
+            <input type="hidden" name="phone" value="+919875771550"/>
+            <input type="hidden" name="text" id="whatsapp-message"/>
+            <input type="text" name="name" id="name" placeholder="Your Name" required/>
+            <input type="email" name="email" id="email" placeholder="Your Email" required/>
+            <textarea name="message" id="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <div class="links">
+        <a href="https://www.linkedin.com/in/sahil-ali-714867242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                    class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://www.facebook.com/share/1AJGyDehDk/"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://www.instagram.com/hey__sahilll?igsh=MWlvMTl2ZWloZmRueQ=="><i
+                    class="fab fa-instagram"></i> Instagram</a>
+        <a href="mailto:sahilkhan36985@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="tel:+919875771550"><i class="fas fa-phone-alt"></i> Phone</a>
+    </div>
+    <div class="highlight-box">
+        <strong>Note:</strong> For inquiries, collaborations, or project details, feel free to reach out
+        through the contact form or any of the links above.
+    </div>
+</div>
+
+<script>
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+    });
+
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+
+        document.getElementById('whatsapp-message').value = whatsappMessage;
+
+        window.location.href = `https://api.whatsapp.com/send?phone=+919875771550&text=${whatsappMessage}`;
+    });
+</script>
+</body>
+</html>
