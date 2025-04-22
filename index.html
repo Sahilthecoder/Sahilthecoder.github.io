@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sahil Ali | Inventory Specialist</title>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-            rel="stylesheet"/>
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet" />
     <style>
         :root {
             --bg: #f5f5f5;
@@ -17,6 +17,9 @@
             --gold: #b8860b;
             --badge-bg: #b8860b;
             --badge-text: #fff;
+            --primary-font: 'Roboto', sans-serif;
+            --shadow-color: rgba(184, 134, 11, 0.3);
+            --transition-duration: 0.3s;
         }
 
         [data-theme="dark"] {
@@ -25,11 +28,12 @@
             --gold: #ffd700;
             --badge-bg: #ffd700;
             --badge-text: #121212;
+            --shadow-color: rgba(255, 215, 0, 0.3);
         }
 
         body {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
+            font-family: var(--primary-font);
             background: var(--bg);
             color: var(--text);
             display: flex;
@@ -38,6 +42,8 @@
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
+            transition: background var(--transition-duration), color var(--transition-duration);
+            position: relative;
         }
 
         .container {
@@ -46,7 +52,8 @@
             width: 100%;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 0 15px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 0 15px var(--shadow-color);
+            transition: background var(--transition-duration), box-shadow var(--transition-duration);
         }
 
         h1 {
@@ -70,10 +77,10 @@
         h2 {
             color: var(--gold);
             margin-bottom: 15px;
-            font-weight: 700;
             font-size: 1.4rem;
             border-bottom: 2px solid var(--gold);
             padding-bottom: 5px;
+            font-weight: 700;
         }
 
         ul {
@@ -103,15 +110,19 @@
             gap: 12px;
         }
 
-        input, textarea, button {
-            font-family: 'Roboto', sans-serif;
+        input,
+        textarea,
+        button {
+            font-family: var(--primary-font);
             font-size: 1rem;
             padding: 10px;
             border-radius: 8px;
             border: 1px solid #ccc;
+            transition: all var(--transition-duration);
         }
 
-        input, textarea {
+        input,
+        textarea {
             background: #eee;
             color: #121212;
             resize: none;
@@ -122,7 +133,7 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            transition: background .3s;
+            transition: background var(--transition-duration);
         }
 
         button:hover {
@@ -140,11 +151,16 @@
             margin: 0;
             color: var(--gold);
             font-size: 24px;
-            transition: color .3s;
+            transition: color var(--transition-duration);
         }
 
         #theme-toggle:hover {
             color: #a67c00;
+        }
+
+        #theme-toggle:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
 
         .links {
@@ -167,12 +183,17 @@
             font-weight: 500;
             font-size: 1rem;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-            transition: background .3s;
+            transition: background var(--transition-duration), color var(--transition-duration);
         }
 
         .links a:hover {
             background: var(--gold);
             color: var(--text);
+        }
+
+        .links a:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
 
         .links a img {
@@ -206,7 +227,7 @@
             font-size: 1.2rem;
             font-weight: 500;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: background .3s;
+            transition: background var(--transition-duration);
             display: block;
             margin: 20px 0;
         }
@@ -215,7 +236,11 @@
             background: #a67c00;
         }
 
-        /* Image CSS */
+        .project-link:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
         .profile-image {
             width: 150px;
             height: 150px;
@@ -223,180 +248,424 @@
             object-fit: cover;
             margin: 0 auto 20px;
             display: block;
-            border: 3px solid var(--gold); /* Add a border */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
-            transition: all 0.3s ease; /* Add a smooth transition for hover effects */
+            border: 3px solid var(--gold);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
         .profile-image:hover {
-            transform: scale(1.1); /* Slightly scale up the image on hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .accordion-section {
+            margin-bottom: 15px;
+        }
+
+        .accordion-header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background var(--transition-duration), box-shadow var(--transition-duration);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion-header span {
+            position: relative;
+            z-index: 2;
+            display: block;
+            width: 100%;
+            text-align: left;
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        @keyframes subtleBackgroundShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .accordion-header:hover {
+            animation: subtleBackgroundShift 5s linear infinite;
+            background: linear-gradient(270deg, #f0f0f0, var(--gold), #f0f0f0);
+            background-size: 200% 200%;
+            color: var(--text);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .accordion-header:hover i {
+            color: var(--text);
+        }
+
+        .accordion-content {
+            padding: 0 10px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.8s cubic-bezier(0.65, 0.05, 0.36, 1);
+            /* Changed transition for smoother effect */
+        }
+
+        .accordion-header i {
+            transition: transform 0.3s ease-in-out;
+            color: var(--gold);
+            position: relative;
+            z-index: 2;
+        }
+
+        .accordion-header.active i {
+            transform: rotate(90deg);
+        }
+
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s, background-color 0.3s;
+            z-index: 1000;
+        }
+
+        #scrollToTopBtn:hover {
+            opacity: 1;
+            background-color: #a67c00;
+        }
+
+        .accordion-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .accordion-content li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+        }
+
+        .accordion-content li::before {
+            content: '\f0da';
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .accordion-content li strong {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .accordion-content li ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        .accordion-content li ul li {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .accordion-content li ul li::before {
+            content: '\f105';
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* Apply consistent styling to all h2 headers */
+        h2 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 5px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .links a {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
+
 <body>
-<button id="theme-toggle" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode"
-        aria-pressed="false" type="button"><i class="fas fa-moon"></i></button>
+    <button id="theme-toggle" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode" aria-pressed="false"
+        type="button">
+        <i class="fas fa-moon"></i>
+    </button>
 
-<div class="container" role="main" aria-label="Sahil Ali Inventory Specialist Portfolio">
-    <h1>Sahil Ali</h1>
-    <p class="tagline">Inventory Specialist • Data Analyst • System Optimizer</p>
+    <div class="container" role="main" aria-label="Sahil Ali Inventory Specialist Portfolio">
+        <h1>Sahil Ali</h1>
+        <p class="tagline">Inventory Specialist • Data Analyst • System Optimizer</p>
 
-     <img src="https://res.cloudinary.com/dlbxotngq/image/upload/v1745295730/WhatsApp_Image_2025-04-22_at_02.36.52_bd29328a_gsrlh8.jpg" alt="Sahil Ali" class="profile-image"/>
+        <img src="https://res.cloudinary.com/dlbxotngq/image/upload/v1745295730/WhatsApp_Image_2025-04-22_at_02.36.52_bd29328a_gsrlh8.jpg"
+            alt="Sahil Ali" class="profile-image" />
 
+        <section>
+            <h2>Professional Snapshot</h2>
+            <ul>
+                <li>A highly skilled and results-oriented Inventory Specialist with 4+ years of experience
+                    optimizing stock levels, streamlining purchase processes, and ensuring meticulous record
+                    management. Proficient in leveraging ERP systems and advanced Excel functions to drive
+                    data-driven decisions and enhance operational efficiency. A collaborative team player
+                    dedicated to maintaining accuracy and achieving measurable improvements in supply chain
+                    performance.
+                </li>
+            </ul>
+        </section>
 
-    <section>
-        <h2>Professional Snapshot</h2>
-        <ul>
-            <li>A highly skilled and results-oriented Inventory Specialist with 4+ years of experience
-                optimizing stock levels, streamlining purchase processes, and ensuring meticulous record
-                management. Proficient in leveraging ERP systems and advanced Excel functions to drive
-                data-driven decisions and enhance operational efficiency. A collaborative team player
-                dedicated to maintaining accuracy and achieving measurable improvements in supply chain
-                performance.
-            </li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Work Experience</h2>
-        <ul>
-            <li><strong><i class="fas fa-store"></i> Inventory Specialist, Ekam Indian Groceries Australia,
-                    Adelaide</strong> (Dec 2022 – Present)
+        <section class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)" id="exp-header" tabindex="0">
+                <span>Work Experience</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="accordion-content">
                 <ul>
-                    <li>Spearheaded end-to-end inventory management utilizing ERP systems (like Erply),
-                        resulting in a 15% reduction in stock discrepancies.
+                    <li>
+                        <strong><i class="fas fa-store"></i> Inventory Specialist, Ekam Indian Groceries Australia,
+                            Adelaide</strong> (Dec 2022 – Present)
+                        <ul>
+                            <li>Spearheaded end-to-end inventory management utilizing ERP systems (like Erply),
+                                resulting in a 15% reduction in stock discrepancies.
+                            </li>
+                            <li>Implemented cross-checking for supplier dockets, achieving 99% reconciliation
+                                accuracy.
+                            </li>
+                            <li>Created detailed reports identifying trends, boosting profitability by 10%.</li>
+                        </ul>
                     </li>
-                    <li>Implemented cross-checking for supplier dockets, achieving 99% reconciliation
-                        accuracy.
+                    <li>
+                        <strong><i class="fas fa-shopping-cart"></i> GRN Officer, Bansal Supermarket, Surat</strong>
+                        (Dec 2021 – Nov 2022)
+                        <ul>
+                            <li>Verified floor pricing daily, increasing promo item sales by 5%.</li>
+                            <li>Maintained 98% accuracy in credit/debit note entries.</li>
+                            <li>Reduced stockouts by 7% via real-time inventory updates.</li>
+                        </ul>
                     </li>
-                    <li>Created detailed reports identifying trends, boosting profitability by 10%.</li>
+                    <li>
+                        <strong><i class="fas fa-warehouse"></i> Warehouse Supervisor, DDUGKY, Jaipur</strong> (Jun
+                        2021 – Nov 2021)
+                        <ul>
+                            <li>Organized inventory, preventing stockouts and delays.</li>
+                            <li>Developed Excel-based stock tracking reducing errors by 10%.</li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            <li><strong><i class="fas fa-shopping-cart"></i> GRN Officer, Bansal Supermarket, Surat</strong>
-                (Dec 2021 – Nov 2022)
+            </div>
+        </section>
+
+        <!-- Core Skills Section as Accordion -->
+        <section class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)" id="skills-header" tabindex="0">
+                <span>Core Skills</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="accordion-content">
                 <ul>
-                    <li>Verified floor pricing daily, increasing promo item sales by 5%.</li>
-                    <li>Maintained 98% accuracy in credit/debit note entries.</li>
-                    <li>Reduced stockouts by 7% via real-time inventory updates.</li>
+                    <li><i class="fas fa-boxes"></i> Inventory Management</li>
+                    <li><i class="fas fa-handshake"></i> Vendor Coordination</li>
+                    <li><i class="fas fa-users"></i> Team Collaboration</li>
+                    <li><i class="fas fa-check-circle"></i> Data Accuracy</li>
+                    <li><i class="fas fa-chart-line"></i> Data Analysis & Reporting</li>
+                    <li><i class="fas fa-file-excel"></i> Excel (VLOOKUP, Pivot Tables)</li>
+                    <li><i class="fas fa-warehouse"></i> Stock Reconciliation</li>
+                    <li><i class="fas fa-clipboard-check"></i> Attention to Detail</li>
+                    <li><i class="fas fa-check-circle"></i> Operational Efficiency</li>
+                    <li><i class="fas fa-percentage"></i> Cost Reduction</li>
                 </ul>
-            </li>
-            <li><strong><i class="fas fa-warehouse"></i> Warehouse Supervisor, DDUGKY, Jaipur</strong> (Jun
-                2021 – Nov 2021)
-                <ul>
-                    <li>Organized inventory, preventing stockouts and delays.</li>
-                    <li>Developed Excel-based stock tracking reducing errors by 10%.</li>
-                </ul>
-            </li>
-        </ul>
-    </section>
+            </div>
+        </section>
 
-    <section>
-        <h2>Core Skills</h2>
-        <ul>
-            <li><i class="fas fa-boxes"></i> Inventory Management</li>
-            <li><i class="fas fa-handshake"></i> Vendor Coordination</li>
-            <li><i class="fas fa-users"></i> Team Collaboration</li>
-            <li><i class="fas fa-check-circle"></i> Data Accuracy</li>
-            <li><i class="fas fa-chart-line"></i> Data Analysis & Reporting</li>
-            <li><i class="fas fa-file-excel"></i> Excel (VLOOKUP, Pivot Tables)</li>
-            <li><i class="fas fa-warehouse"></i> Stock Reconciliation</li>
-            <li><i class="fas fa-clipboard-check"></i> Attention to Detail</li>
-            <li><i class="fas fa-check-circle"></i> Operational Efficiency</li>
-            <li><i class="fas fa-percentage"></i> Cost Reduction</li>
-        </ul>
-    </section>
+        <section>
+            <h2>Education</h2>
+            <ul>
+                <li><i class="fas fa-graduation-cap"></i> B.Sc. in Computer Science – MDSU University, Rajasthan
+                    (2018 — 2021)
+                </li>
+            </ul>
+        </section>
 
-    <section>
-        <h2>Education</h2>
-        <ul>
-            <li><i class="fas fa-graduation-cap"></i> B.Sc. in Computer Science – MDSU University, Rajasthan
-                (2018 — 2021)
-            </li>
-        </ul>
-    </section>
+        <section>
+            <h2>Languages</h2>
+            <ul>
+                <li><i class="fas fa-language"></i> English</li>
+                <li><i class="fas fa-language"></i> Hindi</li>
+            </ul>
+        </section>
 
-    <section>
-        <h2>Languages</h2>
-        <ul>
-            <li><i class="fas fa-language"></i> English</li>
-            <li><i class="fas fa-language"></i> Hindi</li>
-        </ul>
-    </section>
-
-    <section style="margin-bottom: 30px;">
-        <h2 style="color: var(--gold);
+        <section style="margin-bottom: 30px;">
+            <h2 style="color: var(--gold);
     margin-bottom: 15px;
     font-weight: 700;
     font-size: 1.4rem;
     border-bottom: 2px solid var(--gold);
     padding-bottom: 5px;">Projects & Portfolio</h2>
-        <p style=" margin-bottom: 12px;
+            <p style=" margin-bottom: 12px;
     font-weight: 400;">
-            <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Zomato Dashboard projects:
-            <a href="https://docs.google.com/spreadsheets/d/10O8-8vsGbaIxKCnj3PQNM20x6QgT8bpM/edit?usp=sharing&ouid=104717405836936422128&rtpof=true&sd=true"
-               target="_blank"
-               style="color: var(--gold); text-decoration: none; font-weight: 500;">
-                <i class="fas fa-external-link-alt"></i> Project 1
-            </a>
-        </p>
-       <p style=" margin-bottom: 12px;
+                <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Zomato Dashboard
+                projects:
+                <a href="https://docs.google.com/spreadsheets/d/10O8-8vsGbaIxKCnj3PQNM20x6QgT8bpM/edit?usp=sharing&ouid=104717405836936422128&rtpof=true&sd=true"
+                    target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 500;">
+                    <i class="fas fa-external-link-alt"></i> Project 1
+                </a>
+            </p>
+            <p style=" margin-bottom: 12px;
     font-weight: 400;">
-            <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Attendance Daily Work:
-            <a href="YOUR_SECOND_PROJECT_LINK_HERE"
-               target="_blank"
-               style="color: var(--gold); text-decoration: none; font-weight: 500;">
-                <i class="fas fa-external-link-alt"></i> Project 2
-            </a>
-        </p>
-    </section>
+                <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Attendance Daily
+                Work:
+                <a href="YOUR_SECOND_PROJECT_LINK_HERE" target="_blank"
+                    style="color: var(--gold); text-decoration: none; font-weight: 500;">
+                    <i class="fas fa-external-link-alt"></i> Project 2
+                </a>
+            </p>
+        </section>
 
-    <section>
-        <h2>Contact Me</h2>
-        <form id="contact-form" action="https://api.whatsapp.com/send" method="GET">
-            <input type="hidden" name="phone" value="+919875771550"/>
-            <input type="hidden" name="text" id="whatsapp-message"/>
-            <input type="text" name="name" id="name" placeholder="Your Name" required/>
-            <input type="email" name="email" id="email" placeholder="Your Email" required/>
-            <textarea name="message" id="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+        <section>
+            <h2>Contact Me</h2>
+            <form id="contact-form" action="https://api.whatsapp.com/send" method="GET">
+                <input type="hidden" name="phone" value="+919875771550" />
+                <input type="hidden" name="text" id="whatsapp-message" />
+                <label for="name">Your Name</label>
+                <input type="text" name="name" id="name" placeholder="Your Name" required />
+                <label for="email">Your Email</label>
+                <input type="email" name="email" id="email" placeholder="Your Email" required />
+                <label for="message">Your Message</label>
+                <textarea name="message" id="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
 
-    <div class="links">
-        <a href="https://www.linkedin.com/in/sahil-ali-714867242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+        <div class="links">
+            <a
+                href="https://www.linkedin.com/in/sahil-ali-714867242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
                     class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://www.facebook.com/share/1AJGyDehDk/"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="https://www.instagram.com/hey__sahilll?igsh=MWlvMTl2ZWloZmRueQ=="><i
+            <a href="https://www.facebook.com/share/1AJGyDehDk/"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://www.instagram.com/hey__sahilll?igsh=MWlvMTl2ZWloZmRueQ=="><i
                     class="fab fa-instagram"></i> Instagram</a>
-        <a href="mailto:sahilkhan36985@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        <a href="tel:+919875771550"><i class="fas fa-phone-alt"></i> Phone</a>
+            <a href="mailto:sahilkhan36985@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            <a href="tel:+919875771550"><i class="fas fa-phone-alt"></i> Phone</a>
+        </div>
+        <div class="highlight-box">
+            <strong>Note:</strong> For inquiries, collaborations, or project details, feel free to reach out
+            through the contact form or any of the links above.
+        </div>
     </div>
-    <div class="highlight-box">
-        <strong>Note:</strong> For inquiries, collaborations, or project details, feel free to reach out
-        through the contact form or any of the links above.
-    </div>
-</div>
 
-<script>
-    document.getElementById('theme-toggle').addEventListener('click', function () {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        document.documentElement.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
-    });
+    <button id="scrollToTopBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    document.getElementById('contact-form').addEventListener('submit', function (event) {
-        event.preventDefault();
+    <script>
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            document.documentElement.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+        });
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-        document.getElementById('whatsapp-message').value = whatsappMessage;
+            const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+            document.getElementById('whatsapp-message').value = whatsappMessage;
 
-        window.location.href = `https://api.whatsapp.com/send?phone=+919875771550&text=${whatsappMessage}`;
-    });
-</script>
+            window.location.href = `https://api.whatsapp.com/send?phone=+919875771550&text=${whatsappMessage}`;
+        });
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('i');
+            const willBeActive = !header.classList.contains('active');
+
+            header.classList.toggle('active', willBeActive);
+            icon.classList.toggle('fa-chevron-right', !willBeActive);
+            icon.classList.toggle('fa-chevron-down', willBeActive);
+
+            content.style.maxHeight = willBeActive ? content.scrollHeight + 'px' : null;
+        }
+        // Function to smoothly open the accordion
+        function openAccordionSmoothly(header) {
+            const content = header.nextElementSibling;
+            content.style.maxHeight = content.scrollHeight + 'px'; // Set to scrollHeight to open
+            header.classList.add('active');
+            header.querySelector('i').classList.remove('fa-chevron-right');
+            header.querySelector('i').classList.add('fa-chevron-down');
+        }
+
+        // Auto-open Work Experience and Core Skills after a delay
+        const openAccordions = () => {
+            const expHeader = document.getElementById('exp-header');
+            const skillsHeader = document.getElementById('skills-header');
+
+            setTimeout(() => {
+                if (expHeader && !expHeader.classList.contains('active')) {
+                    toggleAccordion(expHeader);
+                }
+            }, 2000); // 2 seconds for Work Experience
+
+            setTimeout(() => {
+                if (skillsHeader && !skillsHeader.classList.contains('active')) {
+                    toggleAccordion(skillsHeader);
+                }
+            }, 5000); // 5 seconds for Core Skills
+        };
+
+        // Call the function to auto-open accordions
+        openAccordions();
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.addEventListener('click', function () {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+    </script>
 </body>
+
 </html>
