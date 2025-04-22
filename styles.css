@@ -426,7 +426,6 @@ h2 {
 .download-cv-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
     padding: 12px 24px;
     background: var(--gold);
@@ -441,8 +440,9 @@ h2 {
     position: relative;
     overflow: hidden;
     margin: 15px 0;
+    width: fit-content;
     max-width: 100%;
-    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .download-cv-btn:hover,
@@ -497,18 +497,14 @@ h2 {
 @media (max-width: 600px) {
     .download-cv-btn {
         width: 100%;
-        font-size: 1.05rem;
         padding: 14px 20px;
+        font-size: 1.1rem;
         border-radius: 10px;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.5px;
     }
 
     .download-cv-btn:hover {
         transform: translateY(-2px) scale(1.02);
     }
-}
 
-    .download-cv-btn:hover {
-        transform: translateY(-2px) scale(1.02);
-    }
 }
