@@ -145,11 +145,6 @@ button:hover {
     color: #a67c00;
 }
 
-#theme-toggle:focus {
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
-}
-
 .links {
     display: flex;
     flex-wrap: wrap;
