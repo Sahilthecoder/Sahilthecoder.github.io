@@ -214,6 +214,16 @@
         .project-link:hover {
             background: #a67c00;
         }
+
+        /*Image CSS*/
+        .profile-image {
+            width: 150px; /* Adjust size as needed */
+            height: 150px;
+            border-radius: 50%; /* Makes the image a circle */
+            object-fit: cover; /* Ensures the image fills the circle without distortion */
+            margin: 0 auto 20px; /* Centers the image and adds space below */
+            display: block; /* Required for margin: 0 auto to work */
+        }
     </style>
 </head>
 <body>
@@ -223,6 +233,9 @@
 <div class="container" role="main" aria-label="Sahil Ali Inventory Specialist Portfolio">
     <h1>Sahil Ali</h1>
     <p class="tagline">Inventory Specialist • Data Analyst • System Optimizer</p>
+
+    <!--Image tag added here -->
+    <img src="https://drive.google.com/file/d/1W2DLC2zjd8yIVQM19NhLk9C9PBA7NdGU/view?usp=sharing" alt="Sahil Ali" class="profile-image"/>
 
     <section>
         <h2>Professional Snapshot</h2>
@@ -330,7 +343,6 @@
         <a href="mailto:sahilkhan36985@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         <a href="tel:+919875771550"><i class="fas fa-phone-alt"></i> Phone</a>
     </div>
-
     <div class="highlight-box">
         <strong>Note:</strong> For inquiries, collaborations, or project details, feel free to reach out
         through the contact form or any of the links above.
