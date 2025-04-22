@@ -423,13 +423,6 @@ h2 {
     }
 }
 
-/*Dynamic grading color*/
-.accordion-content ul li:hover {
-    background: linear-gradient(to right, var(--bg), rgba(184, 134, 11, 0.15), var(--bg));
-    color: var(--text);
-    transform: scale(1.02);
-    transition: all 0.3s ease;
-}
 /* Enhanced Download CV Button Styles */
 .download-cv-btn {
     display: inline-flex;
@@ -443,19 +436,21 @@ h2 {
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: all 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
     position: relative;
     overflow: hidden;
     margin: 15px 0;
+    width: fit-content; /* Make the button width adjust to its content */
 }
 
-.download-cv-btn:hover, .download-cv-btn:focus {
+.download-cv-btn:hover,
+.download-cv-btn:focus {
     background: linear-gradient(135deg, #e6c100, #a67c00);
     color: #fff;
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 20px rgba(166, 124, 0, 0.4);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .download-cv-btn::before {
@@ -479,9 +474,17 @@ h2 {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(230, 193, 0, 0.7); }
-    70% { box-shadow: 0 0 0 12px rgba(230, 193, 0, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(230, 193, 0, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(230, 193, 0, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(230, 193, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(230, 193, 0, 0);
+    }
 }
 
 .download-cv-btn:active {
@@ -498,7 +501,7 @@ h2 {
         border-radius: 10px;
         letter-spacing: 0.5px;
     }
-    
+
     .download-cv-btn:hover {
         transform: translateY(-2px) scale(1.02);
     }
