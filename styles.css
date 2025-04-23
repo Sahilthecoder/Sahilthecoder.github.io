@@ -270,7 +270,7 @@ button:hover {
     display: block;
     width: 100%;
     text-align: left;
-    color: #000000;
+    color: var(--gold);
     font-size: 1.4rem;
     font-weight: 700;
 }
