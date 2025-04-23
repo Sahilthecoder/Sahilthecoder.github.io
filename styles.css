@@ -1,4 +1,5 @@
 /* ==================== Global Variables & Theme ==================== */
+/* Light theme */
 :root {
     --bg: #f5f5f5;
     --text: #121212;
@@ -17,14 +18,19 @@
     --highlight-bg: #f0f0f0;
     --highlight-text: #777;
     --accordion-header-bg: #f0f0f0;
-    --accordion-content-bg: #fff; /* Assuming white background for light mode content */
+    --accordion-content-bg: #fff;
     --scroll-btn-text: #fff;
     --scroll-btn-hover-bg: #a67c00;
     /* Variables for the switch */
-    --switch-track-bg: #111; /* Default (light mode) switch track background */
-    --switch-ball-bg: #fff; /* Default (light mode) switch ball background */
+    --switch-track-bg: #111;
+    --switch-ball-bg: #fff;
+      /* Dark mode text and icon color adjustments */
+    --text-primary: #333;
+    --text-secondary: #777;
+    --icon-color: #666;
 }
 
+/* Dark theme */
 [data-theme="dark"] {
     --bg: #121212;
     --text: #f5f5f5;
@@ -36,17 +42,21 @@
     --form-bg: #2c2c2c;
     --form-text: #f5f5f5;
     --form-border: #444;
-    --button-text: #121212; /* Button text color in dark mode */
-    --button-hover-bg: #e6c100; /* Button hover color in dark mode */
+    --button-text: #121212;
+    --button-hover-bg: #e6c100;
     --highlight-bg: #2c2c2c;
     --highlight-text: #ccc;
     --accordion-header-bg: #2c2c2c;
-    --accordion-content-bg: #1e1e1e; /* Dark mode background for accordion content */
-    --scroll-btn-text: #121212; /* Scroll button text color in dark mode */
-    --scroll-btn-hover-bg: #e6c100; /* Scroll button hover color in dark mode */
+    --accordion-content-bg: #1e1e1e;
+    --scroll-btn-text: #121212;
+    --scroll-btn-hover-bg: #e6c100;
     /* Dark mode values for the switch */
-    --switch-track-bg: #fff; /* Dark mode switch track background */
-    --switch-ball-bg: #000; /* Dark mode switch ball background */
+    --switch-track-bg: #fff;
+    --switch-ball-bg: #000;
+     /* Dark mode text and icon color adjustments */
+    --text-primary: #eee;
+    --text-secondary: #ccc;
+    --icon-color: #ddd;
 }
 
 body {
@@ -62,6 +72,39 @@ body {
     line-height: 1.6;
     transition: background var(--transition-duration), color var(--transition-duration);
     position: relative;
+}
+body::after {
+    content: "";
+    display: block;
+    position: fixed; /* Ensure it covers the whole viewport */
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.2); /* Softer, theme-consistent ripple */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none; /* Ensures ripple doesn't interfere with clicks */
+    z-index: 9999; /* Place ripple above all other content */
+    transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
+}body.ripple-active::after {
+    width: 200vh; /* Cover entire viewport */
+    height: 200vh; /* Cover entire viewport */
+    opacity: 1;
+}
+
+/* Dark Mode Compatibility (Simplified) */
+[data-theme="dark"] body::after {
+    background: rgba(255, 215, 0, 0.3); /* Slightly lighter ripple in dark mode */
+}
+
+/* Optional: Reduce animation on mobile */
+@media (max-width: 600px) {
+    body.ripple-active::after {
+        width: 100vh;
+        height: 100vh;
+    }
 }
 
 .container {
@@ -354,90 +397,89 @@ button:hover {
 }
 
 .accordion-header {
-    /* Use variable for background color */
-    background-color: var(--accordion-header-bg);
-    padding: 10px;
+    background-color: var(--accordion-header-bg); /* Themed background */
+    padding: 12px 16px;
     cursor: pointer;
-    border-radius: 8px;
-    margin-bottom: 5px;
+    border-radius: 10px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background var(--transition-duration), box-shadow var(--transition-duration);
+    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
     position: relative;
     overflow: hidden;
-    /* Ensure text color is inherited or set by variable */
     color: var(--text);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+/* Title Text */
 .accordion-header span {
     position: relative;
     z-index: 2;
     display: block;
     width: 100%;
     text-align: left;
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
     font-size: 1.4rem;
     font-weight: 700;
 }
 
-@keyframes subtleBackgroundShift {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 100% 50%;
-    }
+@keyframes shimmerBackground {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
 }
 
+/* Hover Animation */
 .accordion-header:hover {
-    animation: subtleBackgroundShift 5s linear infinite;
-    /* Adjust gradient to use themed background */
-    background: linear-gradient(270deg, var(--accordion-header-bg), var(--gold), var(--accordion-header-bg));
-    background-size: 200% 200%;
-    color: var(--text); /* Uses variable */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(110deg, var(--accordion-header-bg), var(--gold), var(--accordion-header-bg));
+    background-size: 200% 100%;
+    animation: shimmerBackground 4s linear infinite;
+    color: var(--text);
+    transform: translateY(-2px); /* Slight lift */
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.15); /* Soft golden glow */
 }
 
+/* Icon Hover Color */
 .accordion-header:hover i {
-    color: var(--text); /* Uses variable */
-}
-
-.accordion-content {
-    padding: 0 10px;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.8s cubic-bezier(0.65, 0.05, 0.36, 1);
-    /* Changed transition for smoother effect */
-    /* Use variable for background color */
-    background-color: var(--accordion-content-bg);
-    /* Ensure text color is inherited or set by variable */
     color: var(--text);
 }
 
+/* Accordion Icon */
 .accordion-header i {
-    transition: transform 0.3s ease-in-out;
-    color: var(--gold); /* Uses variable */
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: var(--gold);
     position: relative;
     z-index: 2;
 }
 
+/* Rotate icon when active */
 .accordion-header.active i {
     transform: rotate(90deg);
 }
 
+/* Content Reveal */
+.accordion-content {
+    padding: 0 16px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.8s cubic-bezier(0.65, 0.05, 0.36, 1), padding 0.3s ease;
+    background-color: var(--accordion-content-bg);
+    color: var(--text);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 0 10px 10px;
+}
+
+/* Scroll Button */
 #scrollToTopBtn {
     display: none;
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--gold); /* Uses variable */
-    /* Use variable for color */
+    background-color: var(--gold);
     color: var(--scroll-btn-text);
     border: none;
     border-radius: 50%;
-    padding: 10px 15px;
+    padding: 12px 16px;
     cursor: pointer;
     opacity: 0.7;
     transition: opacity 0.3s, background-color 0.3s;
@@ -446,10 +488,10 @@ button:hover {
 
 #scrollToTopBtn:hover {
     opacity: 1;
-    /* Use variable for hover background */
     background-color: var(--scroll-btn-hover-bg);
 }
 
+/* Accordion Lists */
 .accordion-content ul {
     padding-left: 20px;
     margin-bottom: 15px;
@@ -458,8 +500,7 @@ button:hover {
 .accordion-content li {
     position: relative;
     padding-left: 25px;
-    margin-bottom: 8px;
-    /* Ensure text color is inherited or set by variable */
+    margin-bottom: 10px;
     color: var(--text);
 }
 
@@ -468,26 +509,24 @@ button:hover {
     font-family: FontAwesome;
     position: absolute;
     left: 0;
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
 }
 
 .accordion-content li strong {
-    font-weight: 500;
+    font-weight: 600;
     display: block;
     margin-bottom: 3px;
-    /* Ensure text color is inherited or set by variable */
     color: var(--text);
 }
 
 .accordion-content li ul {
-    margin-top: 5px;
+    margin-top: 6px;
     padding-left: 20px;
 }
 
 .accordion-content li ul li {
     position: relative;
     padding-left: 25px;
-    /* Ensure text color is inherited or set by variable */
     color: var(--text);
 }
 
@@ -496,9 +535,8 @@ button:hover {
     font-family: FontAwesome;
     position: absolute;
     left: 0;
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
 }
-
 /* Apply consistent styling to all h2 headers */
 h2 {
     color: var(--gold); /* Uses variable */
@@ -517,116 +555,376 @@ h2 {
     h1 {
         font-size: 2rem;
     }
+} /* Added missing closing brace for the media query */
 
+/* ==================== SOCIAL ACCOUNT LINKS ==================== */
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.links a {
+    color: var(--text);
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid var(--gold);
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s, color 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.links a i {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+/* Ripple Effect on Click */
+.links a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.4); /* Gold ripple */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.links a:active::after {
+    width: 150%;
+    height: 150%;
+    opacity: 1;
+    transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Remove the ripple after the animation completes */
+.links a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    transition: all 0.5s ease;
+}
+
+.links a:hover::after {
+    width: 200px;
+    height: 200px;
+    opacity: 0.15;
+    transition: all 0.6s ease;
+}
+
+/* Basic Hover Effect */
+.links a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--button-text);
+    border-color: var(--gold);
+}
+
+.links a:hover i {
+    color: var(--button-text);
+}
+
+.links a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
     .links {
-        flex-direction: row;
-        /* Changed to row */
-        justify-content: space-between;
-        /* Distribute buttons evenly */
+        flex-direction: column;
         align-items: center;
-        width: 100%;
-        /* Take full width */
     }
 
     .links a {
-        width: calc(50% - 7.5px);
-        /* Two buttons per row */
-        margin-bottom: 10px;
-        /* Add some spacing between buttons */
-    }
-
-    .profile-image {
-        width: 120px;
-        /* Smaller image for mobile */
-        height: 120px;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.1rem;
     }
 }
-/* Enhanced Download CV Button Styles */
+
+/* Dark Mode Compatibility */
+[data-theme="dark"] .links a {
+    color: var(--text);
+    border-color: var(--gold);
+}
+
+[data-theme="dark"] .links a:hover {
+    color: var(--bg);
+}
+
+
+
+
+/* ========================================= BUTTON STYLES===================================== */
+button, .download-cv-btn {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    border: none;
+    padding: 12px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    transform: translateZ(0);
+    will-change: transform;
+    background: var(--gold);
+    color: var(--button-text);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect - 3D Tilt + Gradient Glow */
+button:hover, .download-cv-btn:hover {
+    transform: translateY(-2px) rotate(1deg);
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        0 0 0 3px rgba(255, 215, 0, 0.2);
+    animation: pulse 2s infinite;
+}
+
+/* Click Effect */
+button:active, .download-cv-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Ripple Effect */
+button::after, .download-cv-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    transition: all 0.5s ease;
+}
+
+button:hover::after, .download-cv-btn:hover::after {
+    width: 200px;
+    height: 200px;
+    opacity: 0.15;
+    transition: all 0.6s ease;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.15),
+            0 0 0 3px rgba(255, 215, 0, 0.2);
+    }
+    50% {
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.15),
+            0 0 0 6px rgba(255, 215, 0, 0.1);
+    }
+    100% {
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.15),
+            0 0 0 3px rgba(255, 215, 0, 0.2);
+    }
+}
+
+/* Contact Form Button Specific */
+#contact-form button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Download Button Specific */
 .download-cv-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
-    background: var(--gold); /* Uses variable */
-    /* Use variable for color */
-    color: var(--button-text); /* Reusing button text variable */
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
     text-decoration: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
-    position: relative;
+    margin-top: 20px;
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+    button, .download-cv-btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+
+    button:hover, .download-cv-btn:hover {
+        transform: translateY(-1px);
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        50% {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] {
+    button, .download-cv-btn {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover, .download-cv-btn:hover {
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.4),
+            0 0 0 3px rgba(255, 215, 0, 0.3);
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow:
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+        50% {
+            box-shadow:
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                0 0 0 6px rgba(255, 215, 0, 0.2);
+        }
+        100% {
+            box-shadow:
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+    }
+}
+
+
+/* ==================== WORK EXPERIENCE STYLES ==================== */
+.work-experience-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.work-experience-list li {
+    margin-bottom: 1rem;
+    background: var(--work-exp-bg); /* Use variable for background */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--work-exp-shadow); /* Use variable for shadow */
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.work-experience-list li:hover {
+    box-shadow: 0 4px 8px var(--work-exp-shadow); /* Use variable for shadow */
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    background: var(--accordion-header-bg); /* Themed header background */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* added background color on hover */
+.job-header:hover {
+    background: var(--button-hover-bg); /*  hover effect */
+}
+
+.job-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--gold); /* Uses variable */
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.job-title i {
+    margin-right: 5px;
+    font-size: 1em;
+}
+
+.job-header span {
+    font-style: italic;
+    color: var(--text-secondary); /* Use CSS variable for date color */
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.accordion-content {
+    padding: 0;
     overflow: hidden;
-    margin: 15px 0;
-    width: fit-content;
-    max-width: 100%;
-    box-sizing: border-box;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    /* Ensure content has a themed background */
+    background: var(--accordion-content-bg);
+    color: var(--text);
 }
 
-.download-cv-btn:hover,
-.download-cv-btn:focus {
-    /* Use variable for hover background */
-    background: var(--button-hover-bg); /* Reusing button hover variable */
-    /* Use variable for color */
-    color: var(--button-text); /* Reusing button text variable */
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(166, 124, 0, 0.4);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.accordion-content.show {
+    padding: 10px;
+    max-height: 500px;
 }
 
-.download-cv-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    transition: 0.5s;
+.job-details {
+    list-style: disc;
+    padding-left: 20px;
 }
 
-.download-cv-btn:hover::before {
-    left: 100%;
+.job-details li {
+    margin-bottom: 5px;
+    line-height: 1.4;
+    font-size: 0.9rem;
+    color: var(--text-primary); /*Use CSS variable for details text color*/
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(230, 193, 0, 0.7);
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    70% {
-        box-shadow: 0 0 0 12px rgba(230, 193, 0, 0);
+    .job-title {
+        margin-bottom: 5px;
+        flex-direction: row;
     }
 
-    100% {
-        box-shadow: 0 0 0 0 rgba(230, 193, 0, 0);
+    .job-header span {
+        white-space: normal;
     }
 }
 
-.download-cv-btn:active {
-    transform: translateY(1px);
-    animation: pulse 0.5s;
-}
-
-/* Mobile Enhancements */
-@media (max-width: 600px) {
-    .download-cv-btn {
-        width: 100%;
-        padding: 14px 20px;
-        font-size: 1.1rem;
-        border-radius: 10px;
-        letter-spacing: 0.5px;
-    }
-
-    .download-cv-btn:hover {
-        transform: translateY(-2px) scale(1.02);
-    }
-
-}
+/* Add to styles.css or your custom stylesheet */
+.arrow-icon {
+    font-family: 'Font Awesome 5 Free'; /* Ensure Font Awesome is loaded */
+    font-weight: 900; /* Required for solid icons */
+    content: '\f078'; /* Unicode for fa-chevron-down */
+    display: inline-block;
+    transition
