@@ -2,9 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Dark Mode Toggle
     const toggleBtn = document.getElementById('toggleBtn');
     if (toggleBtn) {
-        toggleBtn.addEventListener('click', function () {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        // Initialize checkbox state based on current theme
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        toggleBtn.checked = currentTheme === 'dark';
+
+        toggleBtn.addEventListener('change', function () {
+            const newTheme = toggleBtn.checked ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
         });
     }
@@ -13,93 +16,99 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
 
-            // Use the standard wa.me link format with encoded text
             const whatsappMessage = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
             const encodedMessage = encodeURIComponent(whatsappMessage);
 
-            // Open WhatsApp chat in a new tab
-            // Using window.open with wa.me is the recommended way to pre-fill messages
+            // Open WhatsApp chat in a new tab with pre-filled message
             window.open(`https://wa.me/919875771550?text=${encodedMessage}`, '_blank');
-
-            // Note: The hidden input #whatsapp-message and form action/method are not needed
-            // when using window.open like this. They can be removed from the HTML.
         });
     }
 
-    // Accordion toggle function (handles smooth animation and icon change)
+    // Accordion toggle function (smooth animation & icon change)
     function toggleAccordion(header) {
         const content = header.nextElementSibling;
-        const icon = header.querySelector('i');
-        const isOpening = !header.classList.contains('active'); // Check if it will be active
+        const icon = header.querySelector('i.arrow-icon');
+        const isOpening = !header.classList.contains('active');
 
         header.classList.toggle('active', isOpening);
-        icon.classList.toggle('fa-chevron-right', !isOpening);
-        icon.classList.toggle('fa-chevron-down', isOpening);
+        if (icon) {
+            icon.classList.toggle('fa-chevron-right', !isOpening);
+            icon.classList.toggle('fa-chevron-down', isOpening);
+        }
 
-        // Use maxHeight for smooth transition
         if (isOpening) {
             content.style.maxHeight = content.scrollHeight + 'px';
         } else {
-            content.style.maxHeight = null; // Reset maxHeight to allow closing
+            content.style.maxHeight = null;
         }
     }
 
-    // Event delegation for manual accordion toggling
-    // Listen for clicks on the document and check if the target is an accordion header
+    // Event delegation for accordion toggling on click
     document.addEventListener('click', function (event) {
         const accordionHeader = event.target.closest('.accordion-header');
-
         if (accordionHeader) {
             toggleAccordion(accordionHeader);
         }
     });
 
-    // Auto-open specific accordions on page load
-    const expHeader = document.getElementById('exp-header');
-    const skillsHeader = document.getElementById('skills-header');
+    // Keyboard accessibility for accordion headers (toggle on Enter or Space)
+    document.addEventListener('keydown', function (event) {
+        if (event.target.classList.contains('accordion-header')) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleAccordion(event.target);
+            }
+        }
+    });
 
-    // Auto-open Work Experience after a delay
-    if (expHeader) {
+    // Auto-open all accordions with a delay
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach((header, index) => {
         setTimeout(() => {
-            // Only auto-open if it's not already active (e.g., from a previous session state)
-            if (!expHeader.classList.contains('active')) {
-                 toggleAccordion(expHeader);
+            if (!header.classList.contains('active')) {
+                toggleAccordion(header);
             }
-        }, 2000); // 2-second delay
-    }
-
-    // Auto-open Core Skills after another delay
-    if (skillsHeader) {
-         setTimeout(() => {
-            // Only auto-open if it's not already active
-            if (!skillsHeader.classList.contains('active')) {
-                toggleAccordion(skillsHeader);
-            }
-        }, 5000); // 5-second delay (adjust as needed)
-    }
-
+        }, 2000 * (index + 1)); // 2-second gap between each
+    });
 
     // Scroll to top button
     const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    if (scrollToTopBtn) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        });
 
-    // Show/hide button based on scroll position
-    window.onscroll = function () {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    };
+        // Scroll to top on button click
+        scrollToTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
-    // Scroll to top on button click
-    scrollToTopBtn.addEventListener('click', function () {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+     // Global Ripple Effect with Mouse Coordinates
+    document.addEventListener('click', function (e) {
+        // Get mouse coordinates relative to the viewport
+        const x = e.clientX;
+        const y = e.clientY;
+
+        // Move the ripple to the click position
+        document.documentElement.style.setProperty('--mouse-x', x + 'px');
+        document.documentElement.style.setProperty('--mouse-y', y + 'px');
+
+        // Add and remove the class to trigger the animation
+        document.body.classList.add('ripple-active');
+        setTimeout(() => {
+            document.body.classList.remove('ripple-active');
+        }, 400); // Duration should match transition in CSS
     });
 });
