@@ -16,7 +16,7 @@
 
 <body>
 <!--==================== Dark Mode Toggle Button ====================-->
-        <div>
+        <div class="switch-container">
           <input type="checkbox" class="checkbox" id="toggleBtn" />
           <label class="switch" for="toggleBtn">
             <i class="fas fa-moon"></i>
@@ -47,17 +47,19 @@
             </ul>
         </section>
 
-        <section class="accordion-section">
-            <div class="accordion-header" onclick="toggleAccordion(this)" id="exp-header" tabindex="0">
-                <span>Work Experience</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="accordion-content">
-                <ul>
-                    <li>
-                        <strong><i class="fas fa-store"></i> Inventory Specialist, Ekam Indian Groceries Australia,
-                            Adelaide</strong> (Dec 2022 – Present)
-                        <ul>
+        <section>
+            <h2>Work Experience</h2>
+            <ul class="work-experience-list">
+                <li>
+                    <!-- This div is now the accordion header -->
+                    <div class="job-header accordion-header" tabindex="0">
+                        <strong class="job-title"><i class="fas fa-store"></i> Inventory Specialist, Ekam Indian
+                            Groceries, Australia</strong> (Dec 2022 – Present)
+                        <i class="fas fa-chevron-down arrow-icon"></i>
+                    </div>
+                    <!-- This div is now the accordion content -->
+                    <div class="accordion-content">
+                        <ul class="job-details">
                             <li>Spearheaded end-to-end inventory management utilizing ERP systems (like Erply),
                                 resulting in a 15% reduction in stock discrepancies.
                             </li>
@@ -66,37 +68,55 @@
                             </li>
                             <li>Created detailed reports identifying trends, boosting profitability by 10%.</li>
                         </ul>
-                    </li>
-                    <li>
-                        <strong><i class="fas fa-shopping-cart"></i> GRN Officer, Bansal Supermarket, Surat</strong>
-                        (Dec 2021 – Nov 2022)
-                        <ul>
+                    </div>
+                </li>
+                <li>
+                    <!-- This div is now the accordion header -->
+                    <div class="job-header accordion-header" tabindex="0">
+                        <strong class="job-title"><i class="fas fa-shopping-cart"></i> GRN Officer, Bansal
+                            Supermarket, Surat</strong> (Dec 2021 – Nov 2022)
+                        <i class="fas fa-chevron-down arrow-icon"></i>
+                    </div>
+                    <!-- This div is now the accordion content -->
+                     <div class="accordion-content">
+                        <ul class="job-details">
                             <li>Verified floor pricing daily, increasing promo item sales by 5%.</li>
                             <li>Maintained 98% accuracy in credit/debit note entries.</li>
                             <li>Reduced stockouts by 7% via real-time inventory updates.</li>
                         </ul>
-                    </li>
-                    <li>
-                        <strong><i class="fas fa-warehouse"></i> Warehouse Supervisor, DDUGKY, Jaipur</strong> (Jun
-                        2021 – Nov 2021)
-                        <ul>
+                    </div>
+                </li>
+                <li>
+                    <!-- This div is now the accordion header -->
+                    <div class="job-header accordion-header" tabindex="0">
+                        <strong class="job-title"><i class="fas fa-warehouse"></i> Warehouse Supervisor, DDUGKY,
+                            Jaipur</strong> (Jun 2021 – Nov 2021)
+                        <i class="fas fa-chevron-down arrow-icon"></i>
+                    </div>
+                    <!-- This div is now the accordion content -->
+                    <div class="accordion-content">
+                        <ul class="job-details">
                             <li>Organized inventory, preventing stockouts and delays.</li>
                             <li>Developed Excel-based stock tracking reducing errors by 10%.</li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </li>
+            </ul>
         </section>
 
         <!-- Core Skills Section as Accordion -->
-        <section class="accordion-section">
-            <div class="accordion-header" onclick="toggleAccordion(this)" id="skills-header" tabindex="0">
-                <span>Core Skills</span>
-                <i class="fas fa-chevron-right"></i>
+        <section>
+            <h2>Core Skills</h2>
+            <!-- This div is now the accordion header -->
+            <div class="job-header accordion-header" tabindex="0">
+                <strong class="job-title"><i class="fas fa-cogs"></i> Skills and Expertise</strong>
+                <i class="fas fa-chevron-down arrow-icon"></i>
             </div>
+            <!-- This div is now the accordion content -->
             <div class="accordion-content">
                 <ul>
                     <li><i class="fas fa-boxes"></i> Inventory Management</li>
+                    <li><i class="fas fa-chart-bar"></i> Data Analysis</li>
                     <li><i class="fas fa-handshake"></i> Vendor Coordination</li>
                     <li><i class="fas fa-users"></i> Team Collaboration</li>
                     <li><i class="fas fa-balance-scale"></i> Stock Auditing</li>
@@ -114,43 +134,30 @@
         <section>
             <h2>Education</h2>
             <ul>
+                <li><i class="fas fa-graduation-cap"></i> MBA in Logistics and Supply Chain Management – MIT
+                    Pune (2022 – 2024)
+                </li>
                 <li><i class="fas fa-graduation-cap"></i> B.Sc. in Computer Science – MDSU University, Rajasthan
                     (2018 — 2021)
                 </li>
             </ul>
         </section>
 
-        <section>
-            <h2>Languages</h2>
-            <ul>
-                <li><i class="fas fa-language"></i> English</li>
-                <li><i class="fas fa-language"></i> Hindi</li>
-            </ul>
-        </section>
-
-        <section style="margin-bottom: 30px;">
-            <h2 style="color: var(--gold);
-    margin-bottom: 15px;
-    font-weight: 700;
-    font-size: 1.4rem;
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 5px;">Projects & Portfolio</h2>
-            <p style=" margin-bottom: 12px;
-    font-weight: 400;">
-                <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Zomato Dashboard
+        <section class="projects-section">
+            <h2>Projects & Portfolio</h2>
+            <p class="project-item">
+                <i class="fas fa-code-branch"></i> Zomato Dashboard
                 projects:
                 <a
                     href="https://docs.google.com/spreadsheets/d/10O8-8vsGbaIxKCnj3PQNM20x6QgT8bpM/edit?usp=sharing&ouid=104717405836936422128&rtpof=true&sd=true"
-                    target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 500;">
+                    target="_blank">
                     <i class="fas fa-external-link-alt"></i> Project 1
                 </a>
             </p>
-            <p style=" margin-bottom: 12px;
-    font-weight: 400;">
-                <i class="fas fa-code-branch" style="color: var(--gold); margin-right: 8px;"></i> Attendance Daily
+            <p class="project-item">
+                <i class="fas fa-code-branch"></i> Attendance Daily
                 Work:
-                <a href="YOUR_SECOND_PROJECT_LINK_HERE" target="_blank"
-                    style="color: var(--gold); text-decoration: none; font-weight: 500;">
+                <a href="YOUR_SECOND_PROJECT_LINK_HERE" target="_blank">
                     <i class="fas fa-external-link-alt"></i> Project 2
                 </a>
             </p>
@@ -163,9 +170,7 @@
 
         <section>
             <h2>Contact Me</h2>
-            <form id="contact-form" action="https://api.whatsapp.com/send" method="GET">
-                <input type="hidden" name="phone" value="+919875771550" />
-                <input type="hidden" name="text" id="whatsapp-message" />
+            <form id="contact-form">
                 <label for="name">Your Name</label>
                 <input type="text" name="name" id="name" placeholder="Your Name" required />
                 <label for="email">Your Email</label>
