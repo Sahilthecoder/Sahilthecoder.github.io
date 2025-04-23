@@ -1,3 +1,4 @@
+/* ==================== Global Variables & Theme ==================== */
 :root {
     --bg: #f5f5f5;
     --text: #121212;
@@ -7,6 +8,21 @@
     --primary-font: 'Roboto', sans-serif;
     --shadow-color: rgba(184, 134, 11, 0.3);
     --transition-duration: 0.3s;
+    /* Added variables for elements with fixed colors */
+    --form-bg: #eee;
+    --form-text: #121212;
+    --form-border: #ccc;
+    --button-text: #fff;
+    --button-hover-bg: #a67c00;
+    --highlight-bg: #f0f0f0;
+    --highlight-text: #777;
+    --accordion-header-bg: #f0f0f0;
+    --accordion-content-bg: #fff; /* Assuming white background for light mode content */
+    --scroll-btn-text: #fff;
+    --scroll-btn-hover-bg: #a67c00;
+    /* Variables for the switch */
+    --switch-track-bg: #111; /* Default (light mode) switch track background */
+    --switch-ball-bg: #fff; /* Default (light mode) switch ball background */
 }
 
 [data-theme="dark"] {
@@ -16,13 +32,28 @@
     --badge-bg: #ffd700;
     --badge-text: #121212;
     --shadow-color: rgba(255, 215, 0, 0.3);
+    /* Dark mode values for added variables */
+    --form-bg: #2c2c2c;
+    --form-text: #f5f5f5;
+    --form-border: #444;
+    --button-text: #121212; /* Button text color in dark mode */
+    --button-hover-bg: #e6c100; /* Button hover color in dark mode */
+    --highlight-bg: #2c2c2c;
+    --highlight-text: #ccc;
+    --accordion-header-bg: #2c2c2c;
+    --accordion-content-bg: #1e1e1e; /* Dark mode background for accordion content */
+    --scroll-btn-text: #121212; /* Scroll button text color in dark mode */
+    --scroll-btn-hover-bg: #e6c100; /* Scroll button hover color in dark mode */
+    /* Dark mode values for the switch */
+    --switch-track-bg: #fff; /* Dark mode switch track background */
+    --switch-ball-bg: #000; /* Dark mode switch ball background */
 }
 
 body {
     margin: 0;
     font-family: var(--primary-font);
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg); /* Uses variable */
+    color: var(--text); /* Uses variable */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,17 +65,19 @@ body {
 }
 
 .container {
-    background: var(--bg);
+    background: var(--bg); /* Uses variable */
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
     max-width: 600px;
     width: 100%;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 15px var(--shadow-color);
+    box-shadow: 0 0 15px var(--shadow-color); /* Uses variable */
     transition: background var(--transition-duration), box-shadow var(--transition-duration);
 }
 
 h1 {
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
     margin-bottom: 10px;
     font-weight: 700;
     text-align: center;
@@ -53,7 +86,7 @@ h1 {
 p.tagline {
     margin: 0 0 30px;
     font-weight: 500;
-    color: var(--text);
+    color: var(--text); /* Uses variable */
     text-align: center;
 }
 
@@ -62,10 +95,10 @@ section {
 }
 
 h2 {
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
     margin-bottom: 15px;
     font-size: 1.4rem;
-    border-bottom: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold); /* Uses variable */
     padding-bottom: 5px;
     font-weight: 700;
 }
@@ -79,16 +112,20 @@ ul {
 li {
     margin-bottom: 12px;
     font-weight: 400;
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
 }
 
 li i {
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
     margin-right: 8px;
 }
 
 li strong {
     display: block;
     margin-bottom: 5px;
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
 }
 
 form {
@@ -104,73 +141,108 @@ button {
     font-size: 1rem;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    /* Use variable for border */
+    border: 1px solid var(--form-border);
     transition: all var(--transition-duration);
 }
 
 input,
 textarea {
-    background: #eee;
-    color: #121212;
+    /* Use variables for background and color */
+    background: var(--form-bg);
+    color: var(--form-text);
     resize: none;
 }
 
 button {
-    background: var(--gold);
-    color: #fff;
+    background: var(--gold); /* Uses variable */
+    /* Use variable for color */
+    color: var(--button-text);
     border: none;
     cursor: pointer;
     transition: background var(--transition-duration);
 }
 
 button:hover {
-    background: #a67c00;
+    /* Use variable for hover background */
+    background: var(--button-hover-bg);
 }
 
 /*==================== Dark Light Button Implementation ====================*/
 .checkbox {
-  display: none;
+    display: none;
 }
 
 .switch {
-  background-color: #111;
-  border-radius: 50px;
-  cursor: pointer;
-  display: flex;
-  Top: 22px;
-  Right:20px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  position: absolute;
-  height: 22px;
-  width: 43px;
-  /* Scale the size to your need */
-  transform: scale(0.7);
+    /* Use variable for background color */
+    background-color: var(--switch-track-bg);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    top: 20px;
+    right: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: absolute;
+    height: 30px; /* Adjusted height for better ratio */
+    width: 60px; /* Adjusted width for better ratio */
+    transform: scale(1); /* Default scale */
+    box-sizing: border-box;
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
 }
+
+/* This rule is now redundant if using var(--switch-track-bg) */
+/* [data-theme="dark"] .switch {
+    background-color: #fff;
+} */
 
 .switch .ball {
-  background-color: #fff;
-  border-radius: 50%;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  height: 22px;
-  width: 22px;
-  transform: translateX(0px);
-  transition: transform 0.2s linear;
+    /* Use variable for background color */
+    background-color: var(--switch-ball-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 24px; /* Adjusted height for better ratio */
+    width: 24px; /* Adjusted width for better ratio */
+    transform: translateX(0px);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
 }
 
+/* This rule is now redundant if using var(--switch-ball-bg) */
+/* [data-theme="dark"] .switch .ball {
+    background-color: #000;
+} */
+
 .checkbox:checked + .switch .ball {
-  transform: translateX(24px);
+    transform: translateX(30px); /* Adjusted translation for new size */
 }
 
 .fa-moon {
-  color: #f1c40f;
+    color: #f1c40f; /* Fixed color, assuming intentional */
+    font-size: 14px; /* Adjusted icon size for better visibility */
 }
 
 .fa-sun {
-  color: #f39c12;
+    color: #f39c12; /* Fixed color, assuming intentional */
+    font-size: 14px; /* Adjusted icon size for better visibility */
+}
+
+@media (max-width: 768px) {
+    .switch {
+        height: 25px; /* Adjusted for smaller devices */
+        width: 50px; /* Adjusted for smaller devices */
+    }
+
+    .switch .ball {
+        height: 20px; /* Adjusted for smaller devices */
+        width: 20px; /* Adjusted for smaller devices */
+    }
+
+    .checkbox:checked + .switch .ball {
+        transform: translateX(25px); /* Adjusted translation for smaller devices */
+    }
 }
 .links {
     display: flex;
@@ -185,8 +257,8 @@ button:hover {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--badge-bg);
-    color: var(--badge-text);
+    background: var(--badge-bg); /* Uses variable */
+    color: var(--badge-text); /* Uses variable */
     padding: 10px 16px;
     border-radius: 12px;
     text-decoration: none;
@@ -202,12 +274,12 @@ button:hover {
 }
 
 .links a:hover {
-    background: var(--gold);
-    color: var(--text);
+    background: var(--gold); /* Uses variable */
+    color: var(--text); /* Uses variable */
 }
 
 .links a:focus {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--gold); /* Uses variable */
     outline-offset: 2px;
 }
 
@@ -222,19 +294,22 @@ button:hover {
     text-align: center;
     margin-top: 30px;
     padding: 15px;
-    background: #f0f0f0;
+    /* Use variables for background and color */
+    background: var(--highlight-bg);
+    color: var(--highlight-text);
     border-radius: 10px;
     font-size: 0.9em;
-    color: #777;
+    transition: background var(--transition-duration), color var(--transition-duration);
 }
 
 .highlight-box strong {
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
 }
 
 .project-link {
-    background: var(--gold);
-    color: #fff;
+    background: var(--gold); /* Uses variable */
+    /* Use variable for color */
+    color: var(--button-text); /* Reusing button text variable */
     padding: 12px 20px;
     border-radius: 8px;
     text-decoration: none;
@@ -248,11 +323,12 @@ button:hover {
 }
 
 .project-link:hover {
-    background: #a67c00;
+    /* Use variable for hover background */
+    background: var(--button-hover-bg); /* Reusing button hover variable */
 }
 
 .project-link:focus {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--gold); /* Uses variable */
     outline-offset: 2px;
 }
 
@@ -263,7 +339,7 @@ button:hover {
     object-fit: cover;
     margin: 0 auto 20px;
     display: block;
-    border: 3px solid var(--gold);
+    border: 3px solid var(--gold); /* Uses variable */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
@@ -278,7 +354,8 @@ button:hover {
 }
 
 .accordion-header {
-    background-color: #f0f0f0;
+    /* Use variable for background color */
+    background-color: var(--accordion-header-bg);
     padding: 10px;
     cursor: pointer;
     border-radius: 8px;
@@ -289,6 +366,8 @@ button:hover {
     transition: background var(--transition-duration), box-shadow var(--transition-duration);
     position: relative;
     overflow: hidden;
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
 }
 
 .accordion-header span {
@@ -297,7 +376,7 @@ button:hover {
     display: block;
     width: 100%;
     text-align: left;
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
     font-size: 1.4rem;
     font-weight: 700;
 }
@@ -314,14 +393,15 @@ button:hover {
 
 .accordion-header:hover {
     animation: subtleBackgroundShift 5s linear infinite;
-    background: linear-gradient(270deg, #f0f0f0, var(--gold), #f0f0f0);
+    /* Adjust gradient to use themed background */
+    background: linear-gradient(270deg, var(--accordion-header-bg), var(--gold), var(--accordion-header-bg));
     background-size: 200% 200%;
-    color: var(--text);
+    color: var(--text); /* Uses variable */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .accordion-header:hover i {
-    color: var(--text);
+    color: var(--text); /* Uses variable */
 }
 
 .accordion-content {
@@ -330,11 +410,15 @@ button:hover {
     max-height: 0;
     transition: max-height 0.8s cubic-bezier(0.65, 0.05, 0.36, 1);
     /* Changed transition for smoother effect */
+    /* Use variable for background color */
+    background-color: var(--accordion-content-bg);
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
 }
 
 .accordion-header i {
     transition: transform 0.3s ease-in-out;
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
     position: relative;
     z-index: 2;
 }
@@ -348,8 +432,9 @@ button:hover {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--gold);
-    color: #fff;
+    background-color: var(--gold); /* Uses variable */
+    /* Use variable for color */
+    color: var(--scroll-btn-text);
     border: none;
     border-radius: 50%;
     padding: 10px 15px;
@@ -361,7 +446,8 @@ button:hover {
 
 #scrollToTopBtn:hover {
     opacity: 1;
-    background-color: #a67c00;
+    /* Use variable for hover background */
+    background-color: var(--scroll-btn-hover-bg);
 }
 
 .accordion-content ul {
@@ -373,6 +459,8 @@ button:hover {
     position: relative;
     padding-left: 25px;
     margin-bottom: 8px;
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
 }
 
 .accordion-content li::before {
@@ -380,13 +468,15 @@ button:hover {
     font-family: FontAwesome;
     position: absolute;
     left: 0;
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
 }
 
 .accordion-content li strong {
     font-weight: 500;
     display: block;
     margin-bottom: 3px;
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
 }
 
 .accordion-content li ul {
@@ -397,6 +487,8 @@ button:hover {
 .accordion-content li ul li {
     position: relative;
     padding-left: 25px;
+    /* Ensure text color is inherited or set by variable */
+    color: var(--text);
 }
 
 .accordion-content li ul li::before {
@@ -404,15 +496,15 @@ button:hover {
     font-family: FontAwesome;
     position: absolute;
     left: 0;
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
 }
 
 /* Apply consistent styling to all h2 headers */
 h2 {
-    color: var(--gold);
+    color: var(--gold); /* Uses variable */
     margin-bottom: 15px;
     font-size: 1.4rem;
-    border-bottom: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold); /* Uses variable */
     padding-bottom: 5px;
     font-weight: 700;
 }
@@ -455,8 +547,9 @@ h2 {
     align-items: center;
     gap: 8px;
     padding: 12px 24px;
-    background: var(--gold);
-    color: #fff;
+    background: var(--gold); /* Uses variable */
+    /* Use variable for color */
+    color: var(--button-text); /* Reusing button text variable */
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -474,8 +567,10 @@ h2 {
 
 .download-cv-btn:hover,
 .download-cv-btn:focus {
-    background: linear-gradient(135deg, #e6c100, #a67c00);
-    color: #fff;
+    /* Use variable for hover background */
+    background: var(--button-hover-bg); /* Reusing button hover variable */
+    /* Use variable for color */
+    color: var(--button-text); /* Reusing button text variable */
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 20px rgba(166, 124, 0, 0.4);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
