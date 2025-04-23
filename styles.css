@@ -172,7 +172,6 @@ button:hover {
 .fa-sun {
   color: #f39c12;
 }
-
 .links {
     display: flex;
     flex-wrap: wrap;
@@ -457,7 +456,7 @@ h2 {
     gap: 8px;
     padding: 12px 24px;
     background: var(--gold);
-    color: #1a1919;
+    color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
