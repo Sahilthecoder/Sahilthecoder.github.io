@@ -1,15 +1,71 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Dark Mode Toggle
-    const toggleBtn = document.getElementById('toggleBtn');
-    if (toggleBtn) {
-        // Initialize checkbox state based on current theme
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-        toggleBtn.checked = currentTheme === 'dark';
 
-        toggleBtn.addEventListener('change', function () {
-            const newTheme = toggleBtn.checked ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-        });
+    // Apply a beautiful animated gradient background to the container
+    const container = document.querySelector('.container');
+    if (container) {
+        // Function to apply gradient background
+        const applyGradient = () => {
+            container.style.backgroundImage = 'none';
+            container.style.background = 'linear-gradient(270deg, #4A90E2, #50E3C2, #9013FE, #D0021B)';
+            container.style.backgroundSize = '800% 800%';
+
+            // Add a CSS animation for smooth gradient shifting
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes gradientShift {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+                .animated-gradient {
+                    animation: gradientShift 15s ease infinite;
+                }
+            `;
+            document.head.appendChild(style);
+
+            container.classList.add('animated-gradient');
+        };
+
+        // Function to remove gradient background
+        const removeGradient = () => {
+            container.style.background = ''; // Remove inline background
+            // Remove dynamically added style tag
+            const styleTag = document.head.querySelector('style');
+            if (styleTag) {
+                document.head.removeChild(styleTag);
+            }
+            container.classList.remove('animated-gradient');
+        };
+
+        // Function to check if dark mode is active
+        const isDarkMode = () => {
+            return document.documentElement.getAttribute('data-theme') === 'dark';
+        };
+
+        // Apply or remove gradient based on initial theme
+        if (!isDarkMode()) {
+            applyGradient();
+        }
+
+        // Dark Mode Toggle
+        const toggleBtn = document.getElementById('toggleBtn');
+        if (toggleBtn) {
+            // Initialize checkbox state based on current theme
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            toggleBtn.checked = currentTheme === 'dark';
+
+            toggleBtn.addEventListener('change', function () {
+                const newTheme = toggleBtn.checked ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+
+                // Apply or remove gradient based on new theme
+                if (!isDarkMode()) {
+                    applyGradient();
+                } else {
+                    removeGradient();
+                }
+            });
+        }
     }
 
     // WhatsApp Contact Form
@@ -95,20 +151,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-     // Global Ripple Effect with Mouse Coordinates
-    document.addEventListener('click', function (e) {
-        // Get mouse coordinates relative to the viewport
-        const x = e.clientX;
-        const y = e.clientY;
+    const profileImage = document.querySelector('.profile-image');
+    const images = [
+        "https://res.cloudinary.com/dlbxotngq/image/upload/v1745297414/WhatsApp_Image_2025-04-22_at_10.19.49_8ecdd7f1_tvmopi.jpg",
+        "https://res.cloudinary.com/dlbxotngq/image/upload/v1745295730/WhatsApp_Image_2025-04-22_at_02.36.52_bd29328a_gsrlh8.jpg"
+    ];
+    let currentIndex = 0;
 
-        // Move the ripple to the click position
-        document.documentElement.style.setProperty('--mouse-x', x + 'px');
-        document.documentElement.style.setProperty('--mouse-y', y + 'px');
+    if (profileImage) {
+        profileImage.addEventListener('click', function () {
+            currentIndex = (currentIndex + 1) % images.length;
+            profileImage.src = images[currentIndex];
+        });
+    }
 
-        // Add and remove the class to trigger the animation
-        document.body.classList.add('ripple-active');
-        setTimeout(() => {
-            document.body.classList.remove('ripple-active');
-        }, 400); // Duration should match transition in CSS
-    });
 });
