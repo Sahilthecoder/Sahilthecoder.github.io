@@ -24,7 +24,7 @@
     /* Variables for the switch */
     --switch-track-bg: #111;
     --switch-ball-bg: #fff;
-      /* Dark mode text and icon color adjustments */
+    /* Dark mode text and icon color adjustments */
     --text-primary: #333;
     --text-secondary: #777;
     --icon-color: #666;
@@ -53,7 +53,7 @@
     /* Dark mode values for the switch */
     --switch-track-bg: #fff;
     --switch-ball-bg: #000;
-     /* Dark mode text and icon color adjustments */
+    /* Dark mode text and icon color adjustments */
     --text-primary: #eee;
     --text-secondary: #ccc;
     --icon-color: #ddd;
@@ -62,8 +62,10 @@
 body {
     margin: 0;
     font-family: var(--primary-font);
-    background: var(--bg); /* Uses variable */
-    color: var(--text); /* Uses variable */
+    background: var(--bg);
+    /* Uses variable */
+    color: var(--text);
+    /* Uses variable */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,54 +75,54 @@ body {
     transition: background var(--transition-duration), color var(--transition-duration);
     position: relative;
 }
-body::after {
-    content: "";
-    display: block;
-    position: fixed; /* Ensure it covers the whole viewport */
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 215, 0, 0.2); /* Softer, theme-consistent ripple */
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    pointer-events: none; /* Ensures ripple doesn't interfere with clicks */
-    z-index: 9999; /* Place ripple above all other content */
-    transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
-}body.ripple-active::after {
-    width: 200vh; /* Cover entire viewport */
-    height: 200vh; /* Cover entire viewport */
-    opacity: 1;
-}
-
-/* Dark Mode Compatibility (Simplified) */
-[data-theme="dark"] body::after {
-    background: rgba(255, 215, 0, 0.3); /* Slightly lighter ripple in dark mode */
-}
-
-/* Optional: Reduce animation on mobile */
-@media (max-width: 600px) {
-    body.ripple-active::after {
-        width: 100vh;
-        height: 100vh;
-    }
-}
 
 .container {
-    background: var(--bg); /* Uses variable */
+    background: var(--bg);
+    /* Uses variable */
     /* Ensure text color is inherited or set by variable */
     color: var(--text);
     max-width: 600px;
     width: 100%;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 15px var(--shadow-color); /* Uses variable */
+    box-shadow: 0 0 15px var(--shadow-color);
+    /* Uses variable */
     transition: background var(--transition-duration), box-shadow var(--transition-duration);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.profile-area {
+  position: relative;
+  overflow: hidden;
+  /* Optional: set fixed height or min-height */
+  min-height: 400px;
+  color: white; /* or any high-contrast color */
+}
+
+.profile-area::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('your-background-image.jpg'); /* or set dynamically */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; /* adjust opacity to dim background */
+  z-index: 0;
+  pointer-events: none; /* so overlay doesn't block clicks */
+}
+
+.profile-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
 }
 
 h1 {
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
+    /* Uses variable */
     margin-bottom: 10px;
     font-weight: 700;
     text-align: center;
@@ -129,7 +131,8 @@ h1 {
 p.tagline {
     margin: 0 0 30px;
     font-weight: 500;
-    color: var(--text); /* Uses variable */
+    color: var(--text);
+    /* Uses variable */
     text-align: center;
 }
 
@@ -138,10 +141,12 @@ section {
 }
 
 h2 {
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
+    /* Uses variable */
     margin-bottom: 15px;
     font-size: 1.4rem;
-    border-bottom: 2px solid var(--gold); /* Uses variable */
+    border-bottom: 2px solid var(--gold);
+    /* Uses variable */
     padding-bottom: 5px;
     font-weight: 700;
 }
@@ -160,7 +165,8 @@ li {
 }
 
 li i {
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
+    /* Uses variable */
     margin-right: 8px;
 }
 
@@ -198,7 +204,8 @@ textarea {
 }
 
 button {
-    background: var(--gold); /* Uses variable */
+    background: var(--gold);
+    /* Uses variable */
     /* Use variable for color */
     color: var(--button-text);
     border: none;
@@ -228,11 +235,15 @@ button:hover {
     justify-content: space-between;
     padding: 5px;
     position: absolute;
-    height: 30px; /* Adjusted height for better ratio */
-    width: 60px; /* Adjusted width for better ratio */
-    transform: scale(1); /* Default scale */
+    height: 30px;
+    /* Adjusted height for better ratio */
+    width: 60px;
+    /* Adjusted width for better ratio */
+    transform: scale(1);
+    /* Default scale */
     box-sizing: border-box;
-    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+    transition: background-color 0.3s ease-in-out;
+    /* Smooth transition */
 }
 
 /* This rule is now redundant if using var(--switch-track-bg) */
@@ -247,10 +258,13 @@ button:hover {
     position: absolute;
     top: 3px;
     left: 3px;
-    height: 24px; /* Adjusted height for better ratio */
-    width: 24px; /* Adjusted width for better ratio */
+    height: 24px;
+    /* Adjusted height for better ratio */
+    width: 24px;
+    /* Adjusted width for better ratio */
     transform: translateX(0px);
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    /* Smooth transition */
 }
 
 /* This rule is now redundant if using var(--switch-ball-bg) */
@@ -259,34 +273,45 @@ button:hover {
 } */
 
 .checkbox:checked + .switch .ball {
-    transform: translateX(30px); /* Adjusted translation for new size */
+    transform: translateX(30px);
+    /* Adjusted translation for new size */
 }
 
 .fa-moon {
-    color: #f1c40f; /* Fixed color, assuming intentional */
-    font-size: 14px; /* Adjusted icon size for better visibility */
+    color: #f1c40f;
+    /* Fixed color, assuming intentional */
+    font-size: 14px;
+    /* Adjusted icon size for better visibility */
 }
 
 .fa-sun {
-    color: #f39c12; /* Fixed color, assuming intentional */
-    font-size: 14px; /* Adjusted icon size for better visibility */
+    color: #f39c12;
+    /* Fixed color, assuming intentional */
+    font-size: 14px;
+    /* Adjusted icon size for better visibility */
 }
 
 @media (max-width: 768px) {
     .switch {
-        height: 25px; /* Adjusted for smaller devices */
-        width: 50px; /* Adjusted for smaller devices */
+        height: 25px;
+        /* Adjusted for smaller devices */
+        width: 50px;
+        /* Adjusted for smaller devices */
     }
 
     .switch .ball {
-        height: 20px; /* Adjusted for smaller devices */
-        width: 20px; /* Adjusted for smaller devices */
+        height: 20px;
+        /* Adjusted for smaller devices */
+        width: 20px;
+        /* Adjusted for smaller devices */
     }
 
     .checkbox:checked + .switch .ball {
-        transform: translateX(25px); /* Adjusted translation for smaller devices */
+        transform: translateX(25px);
+        /* Adjusted translation for smaller devices */
     }
 }
+
 .links {
     display: flex;
     flex-wrap: wrap;
@@ -300,8 +325,10 @@ button:hover {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--badge-bg); /* Uses variable */
-    color: var(--badge-text); /* Uses variable */
+    background: var(--badge-bg);
+    /* Uses variable */
+    color: var(--badge-text);
+    /* Uses variable */
     padding: 10px 16px;
     border-radius: 12px;
     text-decoration: none;
@@ -317,12 +344,15 @@ button:hover {
 }
 
 .links a:hover {
-    background: var(--gold); /* Uses variable */
-    color: var(--text); /* Uses variable */
+    background: var(--gold);
+    /* Uses variable */
+    color: var(--text);
+    /* Uses variable */
 }
 
 .links a:focus {
-    outline: 2px solid var(--gold); /* Uses variable */
+    outline: 2px solid var(--gold);
+    /* Uses variable */
     outline-offset: 2px;
 }
 
@@ -346,13 +376,16 @@ button:hover {
 }
 
 .highlight-box strong {
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
+    /* Uses variable */
 }
 
 .project-link {
-    background: var(--gold); /* Uses variable */
+    background: var(--gold);
+    /* Uses variable */
     /* Use variable for color */
-    color: var(--button-text); /* Reusing button text variable */
+    color: var(--button-text);
+    /* Reusing button text variable */
     padding: 12px 20px;
     border-radius: 8px;
     text-decoration: none;
@@ -367,11 +400,13 @@ button:hover {
 
 .project-link:hover {
     /* Use variable for hover background */
-    background: var(--button-hover-bg); /* Reusing button hover variable */
+    background: var(--button-hover-bg);
+    /* Reusing button hover variable */
 }
 
 .project-link:focus {
-    outline: 2px solid var(--gold); /* Uses variable */
+    outline: 2px solid var(--gold);
+    /* Uses variable */
     outline-offset: 2px;
 }
 
@@ -382,7 +417,8 @@ button:hover {
     object-fit: cover;
     margin: 0 auto 20px;
     display: block;
-    border: 3px solid var(--gold); /* Uses variable */
+    border: 3px solid var(--gold);
+    /* Uses variable */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
@@ -397,7 +433,8 @@ button:hover {
 }
 
 .accordion-header {
-    background-color: var(--accordion-header-bg); /* Themed background */
+    background-color: var(--accordion-header-bg);
+    /* Themed background */
     padding: 12px 16px;
     cursor: pointer;
     border-radius: 10px;
@@ -424,9 +461,15 @@ button:hover {
     font-weight: 700;
 }
 
+/* Add shimmer background animation */
 @keyframes shimmerBackground {
-    0% { background-position: -100% 0; }
-    100% { background-position: 200% 0; }
+    0% {
+        background-position: -100% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 /* Hover Animation */
@@ -435,8 +478,10 @@ button:hover {
     background-size: 200% 100%;
     animation: shimmerBackground 4s linear infinite;
     color: var(--text);
-    transform: translateY(-2px); /* Slight lift */
-    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.15); /* Soft golden glow */
+    transform: translateY(-2px);
+    /* Slight lift */
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.15);
+    /* Soft golden glow */
 }
 
 /* Icon Hover Color */
@@ -537,12 +582,15 @@ button:hover {
     left: 0;
     color: var(--gold);
 }
+
 /* Apply consistent styling to all h2 headers */
 h2 {
-    color: var(--gold); /* Uses variable */
+    color: var(--gold);
+    /* Uses variable */
     margin-bottom: 15px;
     font-size: 1.4rem;
-    border-bottom: 2px solid var(--gold); /* Uses variable */
+    border-bottom: 2px solid var(--gold);
+    /* Uses variable */
     padding-bottom: 5px;
     font-weight: 700;
 }
@@ -555,7 +603,7 @@ h2 {
     h1 {
         font-size: 2rem;
     }
-} /* Added missing closing brace for the media query */
+}
 
 /* ==================== SOCIAL ACCOUNT LINKS ==================== */
 .links {
@@ -587,52 +635,6 @@ h2 {
     transition: color 0.3s ease;
 }
 
-/* Ripple Effect on Click */
-.links a::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 215, 0, 0.4); /* Gold ripple */
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.links a:active::after {
-    width: 150%;
-    height: 150%;
-    opacity: 1;
-    transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
-}
-
-/* Remove the ripple after the animation completes */
-.links a::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%, -50%);
-    transform-origin: 50% 50%;
-    transition: all 0.5s ease;
-}
-
-.links a:hover::after {
-    width: 200px;
-    height: 200px;
-    opacity: 0.15;
-    transition: all 0.6s ease;
-}
-
 /* Basic Hover Effect */
 .links a:hover {
     transform: translateY(-2px);
@@ -654,277 +656,48 @@ h2 {
 @media (max-width: 600px) {
     .links {
         flex-direction: column;
-        align-items: center;
-    }
 
-    .links a {
-        width: 100%;
-        text-align: center;
-        padding: 10px;
-        font-size: 1.1rem;
-    }
-}
-
-/* Dark Mode Compatibility */
-[data-theme="dark"] .links a {
-    color: var(--text);
-    border-color: var(--gold);
-}
-
-[data-theme="dark"] .links a:hover {
-    color: var(--bg);
-}
-
-
-
-
-/* ========================================= BUTTON STYLES===================================== */
-button, .download-cv-btn {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    border: none;
-    padding: 12px 24px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    transform: translateZ(0);
-    will-change: transform;
-    background: var(--gold);
-    color: var(--button-text);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Hover Effect - 3D Tilt + Gradient Glow */
-button:hover, .download-cv-btn:hover {
-    transform: translateY(-2px) rotate(1deg);
-    box-shadow:
-        0 6px 12px rgba(0, 0, 0, 0.15),
-        0 0 0 3px rgba(255, 215, 0, 0.2);
-    animation: pulse 2s infinite;
-}
-
-/* Click Effect */
-button:active, .download-cv-btn:active {
-    transform: translateY(0) scale(0.98);
-}
-
-/* Ripple Effect */
-button::after, .download-cv-btn::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%, -50%);
-    transform-origin: 50% 50%;
-    transition: all 0.5s ease;
-}
-
-button:hover::after, .download-cv-btn:hover::after {
-    width: 200px;
-    height: 200px;
-    opacity: 0.15;
-    transition: all 0.6s ease;
-}
-
-/* Pulse Animation */
-@keyframes pulse {
-    0% {
-        box-shadow:
-            0 6px 12px rgba(0, 0, 0, 0.15),
-            0 0 0 3px rgba(255, 215, 0, 0.2);
-    }
-    50% {
-        box-shadow:
-            0 6px 12px rgba(0, 0, 0, 0.15),
-            0 0 0 6px rgba(255, 215, 0, 0.1);
-    }
-    100% {
-        box-shadow:
-            0 6px 12px rgba(0, 0, 0, 0.15),
-            0 0 0 3px rgba(255, 215, 0, 0.2);
-    }
-}
-
-/* Contact Form Button Specific */
-#contact-form button {
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* Download Button Specific */
-.download-cv-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-decoration: none;
-    margin-top: 20px;
-}
-
-/* Mobile Optimization */
-@media (max-width: 480px) {
-    button, .download-cv-btn {
-        padding: 10px 18px;
-        font-size: 0.9rem;
-    }
-
-    button:hover, .download-cv-btn:hover {
-        transform: translateY(-1px);
-    }
-
-    @keyframes pulse {
-        0%, 100% {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        50% {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        a {
+            width: 100%;
+            /* Full width on smaller screens */
+            margin-bottom: 10px;
         }
     }
 }
 
-/* Dark Mode Adjustments */
-[data-theme="dark"] {
-    button, .download-cv-btn {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    button:hover, .download-cv-btn:hover {
-        box-shadow:
-            0 6px 12px rgba(0, 0, 0, 0.4),
-            0 0 0 3px rgba(255, 215, 0, 0.3);
-    }
-
-    @keyframes pulse {
-        0% {
-            box-shadow:
-                0 6px 12px rgba(0, 0, 0, 0.4),
-                0 0 0 3px rgba(255, 215, 0, 0.3);
-        }
-        50% {
-            box-shadow:
-                0 6px 12px rgba(0, 0, 0, 0.4),
-                0 0 0 6px rgba(255, 215, 0, 0.2);
-        }
-        100% {
-            box-shadow:
-                0 6px 12px rgba(0, 0, 0, 0.4),
-                0 0 0 3px rgba(255, 215, 0, 0.3);
-        }
-    }
-}
-
-
-/* ==================== WORK EXPERIENCE STYLES ==================== */
-.work-experience-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.work-experience-list li {
-    margin-bottom: 1rem;
-    background: var(--work-exp-bg); /* Use variable for background */
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--work-exp-shadow); /* Use variable for shadow */
-    transition: background 0.3s, box-shadow 0.3s;
-}
-
-.work-experience-list li:hover {
-    box-shadow: 0 4px 8px var(--work-exp-shadow); /* Use variable for shadow */
-}
-
+/* Adjustments for Work Experience Section */
 .job-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 8px;
-    background: var(--accordion-header-bg); /* Themed header background */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the start of the container */
+    position: relative; /* Add relative positioning */
+    padding-right: 30px; /* Make space for the icon on the right */
 }
 
-/* added background color on hover */
-.job-header:hover {
-    background: var(--button-hover-bg); /*  hover effect */
+.job-header .job-title-company {
+    display: block; /* Ensure it's a block-level element */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Show ellipsis (...) if text overflows */
+    margin-bottom: 0px; /* Reduce space below job title */
+    color: var(--gold);  /* Inherit or set text color */
+    font-size: 1.2rem;    /* Reduce the job-title font size*/
 }
 
-.job-title {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--gold); /* Uses variable */
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
+.job-header .job-dates {
+    font-size: 0.7rem; /* Reduced font size for time period */
+    color: var(--text-secondary); /* Use a secondary text color */
+    margin-top: 3px; /* Add some space between job title and time period */
 }
 
-.job-title i {
-    margin-right: 5px;
-    font-size: 1em;
+.job-header .arrow-icon {
+    position: absolute; /* Position icon absolutely */
+    right: 10px; /* Align to the right */
+    top: 10px; /* Align to the top */
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.job-header span {
-    font-style: italic;
-    color: var(--text-secondary); /* Use CSS variable for date color */
-    font-size: 0.8rem;
-    white-space: nowrap;
+.job-header.active .arrow-icon {
+    transform: rotate(90deg); /* Rotate icon when active */
 }
 
-.accordion-content {
-    padding: 0;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-out;
-    /* Ensure content has a themed background */
-    background: var(--accordion-content-bg);
-    color: var(--text);
-}
-
-.accordion-content.show {
-    padding: 10px;
-    max-height: 500px;
-}
-
-.job-details {
-    list-style: disc;
-    padding-left: 20px;
-}
-
-.job-details li {
-    margin-bottom: 5px;
-    line-height: 1.4;
-    font-size: 0.9rem;
-    color: var(--text-primary); /*Use CSS variable for details text color*/
-}
-
-/* Media query for responsiveness */
-@media (max-width: 768px) {
-    .job-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .job-title {
-        margin-bottom: 5px;
-        flex-direction: row;
-    }
-
-    .job-header span {
-        white-space: normal;
-    }
-}
-
-/* Add to styles.css or your custom stylesheet */
-.arrow-icon {
-    font-family: 'Font Awesome 5 Free'; /* Ensure Font Awesome is loaded */
-    font-weight: 900; /* Required for solid icons */
-    content: '\f078'; /* Unicode for fa-chevron-down */
-    display: inline-block;
-    transition
