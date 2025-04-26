@@ -680,7 +680,7 @@ h2 {
     overflow: visible;
     text-overflow: clip;
     margin-bottom: 0px;
-    color: var(--gold);
+    color: var(--text);
     font-size: 1.2rem;
 }
 
